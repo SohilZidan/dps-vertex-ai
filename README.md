@@ -69,10 +69,9 @@ This project relies on [this tutorial](https://codelabs.developers.google.com/co
 * Get predictions:
     * change the input `test_mpg` inside the script `predict.py`
     * change the `ENDPOINT_STRING` inside `predict.py` using the commands:
-    ```bash
-    $ ENDPOINT=$(cat deploy-output.txt | sed -nre 's:.*Resource name\: (.*):\1:p' | tail -1)
-    $ sed -i "s|ENDPOINT_STRING|$ENDPOINT|g" predict.py
-    ```
-    * ```
-      python3 predict.py
-      ```
+        ```bash
+        $ ENDPOINT=$(cat deploy-output.txt | sed -nre 's:.*Resource name\: (.*):\1:p' | tail -1)
+        $ sed -i "s|ENDPOINT_STRING|$ENDPOINT|g" predict.py
+        ```
+    * run the prediction script for the input `test_mpg = [1, 2, 3, 2, -2, -1, -2, -1, 0]` gives the result:
+    ![result](imgs/result.png)
