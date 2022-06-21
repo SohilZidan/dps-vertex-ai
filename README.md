@@ -22,7 +22,7 @@ This project relies on [this tutorial](https://codelabs.developers.google.com/co
     $ BUCKET_NAME=gs://$GOOGLE_CLOUD_PROJECT-bucket
     gsutil mb -l us-central1 $BUCKET_NAME
     ```
-## 1. Setup your environment:
+## 2. Containerize training code:
 * Set up files
     ```bash
     mkdir mpg
@@ -32,11 +32,24 @@ This project relies on [this tutorial](https://codelabs.developers.google.com/co
     touch trainer/train.py
     ```
 * [Dockerfile](Dockerfile): It uses a deep learning docker image that contains all the python packages we need. It also sets up our training entrypoint which is the `train.py` script
-* [Model training code](trainer/train.py)\
+* [Model training code](trainer/train.py) \
     replace `BUCKET` variable in `train.py` with the value of the global variable `$BUCKT_NAME`
-* Build and test the container locally\
-    * ```bash
-      $ IMAGE_URI="gcr.io/$GOOGLE_CLOUD_PROJECT/mpg:v1" # define GCR URI
-      $ docker build ./ -t $IMAGE_URI # build
-      $ docker push $IMAGE_URI # push
-      ```
+* Build and test the container locally
+    ```bash
+    $ IMAGE_URI="gcr.io/$GOOGLE_CLOUD_PROJECT/mpg:v1" # define GCR URI
+    $ docker build ./ -t $IMAGE_URI # build
+    $ docker push $IMAGE_URI # push
+    ```
+## 3. Run a training job on Vertex AI
+* Go to [Cloud Console](http://console.cloud.google.com/)
+* Select Vertex AI section from the Navigation menu on the upperleft corner of the webpage
+* Navigate to **Training** --> Create:
+    1. `Training Method`: **Dataset**, select **No managed dataset** --> **Continue**
+    2. `Model details`: Enter whatever you like as **Name**--> **Continue**
+    3. `Training container`: select **Custom container** --> in **Custom container settings** select your **Container image** --> **Continue**
+    4. `Hyperparameter`: **Continue**
+    5. `Compute and pricing`: select **Machine type** --> **Continue**
+    6. `Prediction container`: **Start Training**
+
+    After training is done, you will see an output similar to this:
+    ![training](imgs/training.png)
