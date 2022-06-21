@@ -1,0 +1,13 @@
+Creating Model
+Create Model backing LRO: projects/674744518899/locations/us-central1/models/2237149920756760576/operations/2894721164804882432
+Model created. Resource name: projects/674744518899/locations/us-central1/models/2237149920756760576
+To use this Model in another session:
+model = aiplatform.Model('projects/674744518899/locations/us-central1/models/2237149920756760576')
+Creating Endpoint
+Create Endpoint backing LRO: projects/674744518899/locations/us-central1/endpoints/7638201725043605504/operations/1261603349929656320
+Endpoint created. Resource name: projects/674744518899/locations/us-central1/endpoints/7638201725043605504
+To use this Endpoint in another session:
+endpoint = aiplatform.Endpoint('projects/674744518899/locations/us-central1/endpoints/7638201725043605504')
+Deploying model to Endpoint : projects/674744518899/locations/us-central1/endpoints/7638201725043605504
+Deploy Endpoint model backing LRO: projects/674744518899/locations/us-central1/endpoints/7638201725043605504/operations/2322764012128829440
+Endpoint model deployed. Resource name: projects/674744518899/locations/us-central1/endpoints/7638201725043605504

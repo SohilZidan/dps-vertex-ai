@@ -53,3 +53,26 @@ This project relies on [this tutorial](https://codelabs.developers.google.com/co
 
     After training is done, you will see an output similar to this:
     ![training](imgs/training.png)
+
+## 4. Deploy a model endpoint
+* Install Vertex SDK: 
+    ```bash
+    pip3 install google-cloud-aiplatform --upgrade --user
+    ```
+* Create model and deploy endpoint: code of deployment is in `deploy.py`
+    run the next command inside the directory `mpg`
+    ```bash
+    python3 deploy.py | tee deploy-output.txt
+    ```
+    when the endpoint deployment is completed, navigate to [Model](https://console.cloud.google.com/ai/platform/models) so you can see the model was deployed successfully: \
+    ![deploy](imgs/deploy.png)
+* Get predictions:
+    * change the input `test_mpg` inside the script `predict.py`
+    * change the `ENDPOINT_STRING` inside `predict.py` using the commands:
+    ```bash
+    $ ENDPOINT=$(cat deploy-output.txt | sed -nre 's:.*Resource name\: (.*):\1:p' | tail -1)
+    $ sed -i "s|ENDPOINT_STRING|$ENDPOINT|g" predict.py
+    ```
+    * ```
+      python3 predict.py
+      ```
