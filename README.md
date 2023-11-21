@@ -36,9 +36,10 @@ This project relies on [this tutorial](https://codelabs.developers.google.com/co
     replace `BUCKET` variable in `train.py` with the value of the global variable `$BUCKT_NAME`
 * Build and test the container locally
     ```bash
-    $ IMAGE_URI="gcr.io/$GOOGLE_CLOUD_PROJECT/mpg:v1" # define GCR URI
-    $ docker build ./ -t $IMAGE_URI # build
-    $ docker push $IMAGE_URI # push
+    IMAGE_URI="gcr.io/$GOOGLE_CLOUD_PROJECT/mpg:v1" # define GCR URI
+    docker build ./ -t $IMAGE_URI # build
+    gcloud auth configure-docker
+    docker push $IMAGE_URI # push
     ```
 ## 3. Run a training job on Vertex AI
 * Go to [Cloud Console](http://console.cloud.google.com/)
